@@ -1,0 +1,51 @@
+@import '../variables/all.scss';
+
+@mixin placeholder {
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+@mixin autofill($color: var(--neutral-color-high-pure)) {
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:hover {
+    //filter: grayscale(100%) brightness(110%);
+
+    @supports (-webkit-background-clip: text) {
+      -webkit-background-clip: text;
+    }
+
+    @supports not (-webkit-background-clip: text) {
+      -webkit-box-shadow: 0 0 0 30px $color inset;
+    }
+    @content;
+  }
+}
+
+input {
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 120px rgb(255 255 255 / 95%) inset;
+    -webkit-box-shadow: 0 0 0 120px rgb(255 255 255 / 95%) inset;
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: 0 0 0 120px rgb(255 255 255 / 95%) inset;
+      -webkit-box-shadow: 0 0 0 120px rgb(255 255 255 / 95%) inset;
+    }
+  }
+  /* -webkit-text-fill-color: indianred; */
+}
