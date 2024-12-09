@@ -31,6 +31,8 @@ export default {
   fill: currentcolor;
   max-height: 100%;
   max-width: 100%;
+  transition: color 0.12s linear, fill 0.12s linear;
+  will-change: color, fill;
 
   &--sm {
     height: var(--icon-size-sm);

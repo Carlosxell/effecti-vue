@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import TodoList from '@/views/ToDos/TodoList.vue'
+import TodoList from '@/components/ToDos/TodoList.vue'
 
 export default {
   name: 'HomeView',
