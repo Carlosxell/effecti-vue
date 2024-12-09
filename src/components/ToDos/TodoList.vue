@@ -20,7 +20,7 @@
         :description="item.description"
         :priority="item.priority"
         :title="item.title"
-        v-for="(item, ind) in todoList"
+        v-for="(item, ind) in filteredList"
         :key="ind"
       />
     </div>
@@ -48,6 +48,17 @@ export default {
       editing: 'TodoModule/getEditStatus',
       todoList: 'TodoModule/getTodoList',
     }),
+    filteredList() {
+      let { search, todoList } = this
+
+      if (this.search?.length) {
+        return todoList.filter((item) => {
+          const str = JSON.stringify(item).toLowerCase()
+          return str.match(search)
+        })
+      }
+      return todoList
+    },
   },
   methods: {
     ...mapActions({

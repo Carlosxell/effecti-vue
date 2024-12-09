@@ -54,9 +54,7 @@ export default {
       this.$emit('input', '')
     },
     handleInput(ev) {
-      if (ev.target?.value) {
-        this.$emit('input', ev.target.value)
-      }
+      this.$emit('input', ev.target.value || '')
     },
   },
 }

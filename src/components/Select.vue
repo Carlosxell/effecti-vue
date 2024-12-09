@@ -34,9 +34,7 @@ export default {
   },
   methods: {
     handleChange(ev) {
-      if (ev.target?.value) {
-        this.$emit('input', ev.target.value)
-      }
+      this.$emit('input', ev.target.value || '')
     },
   },
 }
