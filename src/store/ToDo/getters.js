@@ -1,5 +1,6 @@
 export default {
-  getEditingStatus: (state) => state.editing,
+  getEditStatus: (state) => state.editing,
   getTodoList: (state) => state.todoList,
-  getDialogStatus: (state) => state.dialogIsOpen,
+  getFormStatus: (state) => state.formIsOpen,
+  getTransitionData: (state) => state.transitionData,
 }

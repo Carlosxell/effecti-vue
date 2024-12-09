@@ -1,6 +1,7 @@
 export const state = () => ({
-  dialogIsOpen: false,
+  formIsOpen: false,
   editing: false,
+  transitionData: {},
   todoList: [
     {
       completed: false,

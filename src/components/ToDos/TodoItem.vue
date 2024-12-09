@@ -13,7 +13,7 @@
           name="check"
         />
       </span>
-      <span class="">
+      <span @click="handleEditTask" class="">
         <WrapIcon class="taskItem__icon taskItem__icon--edit" name="edit" />
       </span>
       <span @click="deleteTask(id)" class="">
@@ -54,10 +54,19 @@ export default {
   },
   methods: {
     ...mapActions({
+      addTransitionData: 'TodoModule/addTransitionData',
       changeTaskStatus: 'TodoModule/changeTaskStatus',
       deleteTask: 'TodoModule/deleteTask',
-      setDialogStatus: 'TodoModule/setDialogStatus',
+      setFormStatus: 'TodoModule/setFormStatus',
+      setEditStatus: 'TodoModule/setEditStatus',
     }),
+    handleEditTask() {
+      const { completed, description, id, priority, title } = this
+
+      this.addTransitionData({ completed, description, id, priority, title })
+      this.setFormStatus(true)
+      this.setEditStatus(true)
+    },
   },
 }
 </script>

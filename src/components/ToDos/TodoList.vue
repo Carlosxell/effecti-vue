@@ -11,11 +11,14 @@
       </div>
     </div>
 
-    <div class="todoList__listWrapper">
+    <AddForm />
+
+    <div class="todoList__listWrapper" v-if="todoList.length">
       <TodoItem
         :completed="item.completed"
         :id="item.id"
         :description="item.description"
+        :priority="item.priority"
         :title="item.title"
         v-for="(item, ind) in todoList"
         :key="ind"
@@ -31,27 +34,28 @@ import TodoItem from '@/components/ToDos/TodoItem.vue'
 import { mapGetters, mapActions } from 'vuex'
 import FormButton from '@/components/Button.vue'
 import WrapIcon from '@/components/Icon.vue'
+import AddForm from '@/components/AddForm.vue'
 
 export default {
   name: 'TodoList',
-  components: { WrapIcon, FormButton, FormInput, TodoItem },
+  components: { AddForm, WrapIcon, FormButton, FormInput, TodoItem },
   data: () => ({
     search: '',
   }),
   computed: {
     ...mapGetters({
-      dialogIsOpen: 'TodoModule/getDialogStatus',
-      editing: 'TodoModule/getEditingStatus',
+      formIsOpen: 'TodoModule/getFormStatus',
+      editing: 'TodoModule/getEditStatus',
       todoList: 'TodoModule/getTodoList',
     }),
   },
   methods: {
     ...mapActions({
-      setDialogStatus: 'TodoModule/setDialogStatus',
+      setFormStatus: 'TodoModule/setFormStatus',
     }),
     openModal() {
-      const status = !this.dialogIsOpen
-      this.setDialogStatus(status)
+      const status = !this.formIsOpen
+      this.setFormStatus(status)
     },
   },
 }
@@ -66,11 +70,6 @@ export default {
   position: relative;
 
   &__form {
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-
     &__search {
       display: grid;
       gap: var(--gap-2);
@@ -81,7 +80,6 @@ export default {
 
   &__listWrapper {
     max-height: calc(100vh - var(--gap-10));
-    margin-top: var(--gap-10);
   }
 }
 </style>
